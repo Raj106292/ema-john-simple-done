@@ -1,0 +1,21 @@
+.cart {
+    position: sticky;
+    top: 20px;
+    padding: 30px 25px;
+}
+
+.grn-total {
+    font-size: 21px;
+    color: #0E161A;
+}
+
+.cart-btn button {
+    width: 100%;
+    background-color: #FF3030;
+    color: white;
+    height: 48px;
+    margin-top: 10px;
+    font-weight: 700;
+    font-size: 17px;
+    border-radius: 4px;
+}

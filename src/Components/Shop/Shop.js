@@ -1,39 +1,24 @@
 import React from 'react';
-import { useEffect } from 'react';
 import { useState } from 'react';
-import { addToDb, getStoredCart } from '../../utilities/fakedb';
+import { useLoaderData } from 'react-router-dom';
+import { addToDb, deleteShoppingCart } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import './Shop.css';
 
 const Shop = () => {
-    const [products, setProducts] = useState([]);
-    useEffect(() => {
-        fetch('products.json')
-            .then(resp => resp.json())
-            .then(data => setProducts(data))
-            .catch(error => console.log(error.message))
-    }, [])
+    const {products, initialCard} = useLoaderData();
 
-    useEffect(() => {
-        const storedCart = getStoredCart();
-        const savedCart = [];
-        for(const id in storedCart){
-            const addedProduct = products.find( product => product.id === id);
-            if(addedProduct){
-                const quantity = storedCart[id];
-                addedProduct.quantity = quantity;
-                savedCart.push(addedProduct);
-            }
-        }
-        setCart(savedCart);
-    },[products])
+    const [cart, setCart] = useState(initialCard);
 
-    const [cart, setCart] = useState([]);
+    const clearCart = () => {
+        setCart([]);
+        deleteShoppingCart();
+    }
     // const [price, setPrice] = useState(0);
     // const [tax, setTax] = useState(0);
     const handleAddToCart = (selectedProduct) => {
-        console.log(selectedProduct);
+        // console.log(selectedProduct);
         let newCart = [];
         const exists = cart.find(product => product.id === selectedProduct.id);
         if(!exists){
@@ -67,7 +52,8 @@ const Shop = () => {
                 }
             </div>
             <div className="cart-container">
-                <Cart cart={cart}></Cart>
+                <Cart cart={cart}
+                clearCart={clearCart}></Cart>
             </div>
         </div>
     );

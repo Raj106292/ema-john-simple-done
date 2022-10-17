@@ -17,3 +17,22 @@
 6. get form data
 7. getAuth in the UserContext
 */
+
+/* 
+------------------------------------------------
+Firebase Hoisting(one time for each computer)
+------------------------------------------------
+1. npm install -g firebase-tools
+2. firebase login
+3. firebase init (for each project one time)
+
+Make sure: for public directory: you select build
+single page application: yes
+github: y/n (as i want)
+
+-------------------------------
+For every deploy
+-------------------------------
+4. npm run build
+5. firebase deploy
+*/

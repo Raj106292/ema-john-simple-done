@@ -4,10 +4,12 @@ import About from './Components/About/About';
 import Inventory from './Components/Inventory/Inventory';
 import Login from './Components/Login/Login';
 import Orders from './Components/Orders/Orders';
+import Shipping from './Components/Shipping/Shipping';
 import Shop from './Components/Shop/Shop';
 import Signup from './Components/Signup/Signup';
 import Main from './Layout/Main';
 import { ProductCardLoader } from './Loaders/ProductCardLoader';
+import PrivateRoute from './Routes/PrivateRoute';
 
 function App() {
   const router = createBrowserRouter([
@@ -32,7 +34,11 @@ function App() {
         },
         {
           path: '/inventory',
-          element: <Inventory></Inventory>,
+          element: <PrivateRoute><Inventory></Inventory></PrivateRoute>
+        },
+        {
+          path: '/shipping',
+          element: <PrivateRoute><Shipping></Shipping></PrivateRoute>,
         },
         {
           path: '/about',

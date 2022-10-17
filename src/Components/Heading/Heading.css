@@ -20,7 +20,25 @@
     color: orangered;
 }
 
+.user-data{
+    background-color: aqua;
+    padding: 5px 10px;
+    border-radius: 5px 0 5px 0;
+    margin-right: 10px;
+}
+
 .active {
     background-color: blue;
     border-radius: 10px;
+}
+
+.btn-logout {
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+.btn-logout:hover{
+    cursor: pointer;
+    background-color: cyan;
 }

@@ -1,10 +1,12 @@
 import React from 'react';
 import { useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import { addToDb, deleteShoppingCart } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import './Shop.css';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Shop = () => {
     const {products, initialCard} = useLoaderData();
@@ -52,8 +54,11 @@ const Shop = () => {
                 }
             </div>
             <div className="cart-container">
-                <Cart cart={cart}
-                clearCart={clearCart}></Cart>
+                <Cart cart={cart} clearCart={clearCart}>
+                <Link to='/orders'>
+                    <button>Review Order <FontAwesomeIcon icon={faArrowRight}></FontAwesomeIcon></button>
+                </Link>
+                </Cart>
             </div>
         </div>
     );

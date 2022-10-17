@@ -1,13 +1,17 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import { AuthContext } from '../../Contexts/UserContext';
 import './Login.css';
 
 const Login = () => {
 
     const { signInUser } = useContext(AuthContext);
-
     const [error, setError] = useState('');
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || '/';
 
     const handleLogInSubmit = (event) => {
         event.preventDefault();
@@ -21,7 +25,13 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 form.reset();
+                Swal.fire(
+                    'Good job!',
+                    'Login Successful!',
+                    'success'
+                  )
                 setError('');
+                navigate(from, {replace: true});
             })
             .catch(error => {
                 const errorMessage = error.message;
